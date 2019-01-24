@@ -1,3 +1,8 @@
+<?php
+	$conn = mysqli_connect("localhost", "root","awef1322","opentutorials","3307");
+	mysqli_select_db($conn, "opentutorials");
+	$res= mysqli_query($conn, "SELECT * FROM topic");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +20,9 @@
 	<nav>
 		<ol>
 			<?php
-				echo file_get_contents("list.txt");
+				while($row = mysqli_fetch_assoc($res)){
+					echo '<li><a href="http://localhost/index.php?id='.$row['id'].'">'.$row['title'].'</a></li>'."\n";
+				}
 			?>
 		</ol>
 	</nav>
